@@ -62,6 +62,7 @@ while True:
   # and store it in the variable: message_bytes
   # ~~~~ INSERT CODE ~~~~
   # ~~~~ END CODE INSERT ~~~~
+  message_bytes = clientSocket.recv(BUFFER_SIZE)
   message = message_bytes.decode('utf-8')
   print ('Received request:')
   print ('< ' + message)
