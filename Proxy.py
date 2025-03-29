@@ -47,13 +47,14 @@ except:
 # continuously accept connections
 while True:
   print ('Waiting for connection...')
-  clientSocket = None
+  
 
   # Accept connection from client and store in the clientSocket
   try:
     # ~~~~ INSERT CODE ~~~~
+    clientSocket, addr = serverSocket.accept()
     # ~~~~ END CODE INSERT ~~~~
-    print ('Received a connection')
+    print ('Received a connection', addr)
   except:
     print ('Failed to accept connection')
     sys.exit()
