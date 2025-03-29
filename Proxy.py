@@ -106,8 +106,11 @@ while True:
     fileExists = os.path.isfile(cacheLocation)
     
     # Check wether the file is currently in the cache
-    cacheFile = open(cacheLocation, "r")
-    cacheData = cacheFile.readlines()
+    cacheFile = open(cacheLocation, "rb")
+    cacheData = cacheFile.read()
+    clientSocket.sendall(cacheData)
+    cacheFile.close()
+    print ('Sent to the client from cache')
 
     print ('Cache hit! Loading from cache file: ' + cacheLocation)
     # ProxyServer finds a cache hit
