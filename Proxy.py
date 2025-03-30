@@ -131,6 +131,7 @@ while True:
     # Create a socket to connect to origin server
     # and store in originServerSocket
     # ~~~~ INSERT CODE ~~~~
+    originServerSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # ~~~~ END CODE INSERT ~~~~
 
     print ('Connecting to:\t\t' + hostname + '\n')
@@ -193,6 +194,7 @@ while True:
 
       # Save origin server response in the cache file
       # ~~~~ INSERT CODE ~~~~
+      print(f"Writing {len(response)} bytes to cache")
       cacheFile.write(response)
       clientSocket.sendall(response)
       # ~~~~ END CODE INSERT ~~~~
