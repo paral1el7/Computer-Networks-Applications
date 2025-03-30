@@ -124,14 +124,13 @@ while True:
     # ~~~~ END CODE INSERT ~~~~
     cacheFile.close()
     print ('Sent to the client:')
-    print ('> ' + cacheData)
+    print(f"Sent {len(cacheData)} bytes to client from cache")
   except:
     # cache miss.  Get resource from origin server
     originServerSocket = None
     # Create a socket to connect to origin server
     # and store in originServerSocket
     # ~~~~ INSERT CODE ~~~~
-    originServerSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # ~~~~ END CODE INSERT ~~~~
 
     print ('Connecting to:\t\t' + hostname + '\n')
@@ -140,12 +139,11 @@ while True:
       address = socket.gethostbyname(hostname)
       # Connect to the origin server
       # ~~~~ INSERT CODE ~~~~
-      originServerSocket.connect((address, 80))
       # ~~~~ END CODE INSERT ~~~~
       print ('Connected to origin Server')
 
-      originServerRequest = f"GET {resource} HTTP/1.1"
-      originServerRequestHeader = f"Host: {hostname}\r\nUser-Agent: Python-Proxy\r\nConnection: close"
+      originServerRequest = ''
+      originServerRequestHeader = ''
       # Create origin server request line and headers to send
       # and store in originServerRequestHeader and originServerRequest
       # originServerRequest is the first line in the request and
