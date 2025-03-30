@@ -143,8 +143,8 @@ while True:
       # ~~~~ END CODE INSERT ~~~~
       print ('Connected to origin Server')
 
-      originServerRequest = ''
-      originServerRequestHeader = ''
+      originServerRequest = f"GET {resource} HTTP/1.1"
+      originServerRequestHeader = f"Host: {hostname}\r\nUser-Agent: Python-Proxy\r\nConnection: close"
       # Create origin server request line and headers to send
       # and store in originServerRequestHeader and originServerRequest
       # originServerRequest is the first line in the request and
