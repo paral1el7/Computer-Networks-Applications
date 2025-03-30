@@ -127,6 +127,7 @@ while True:
     print(f"Sent {len(cacheData)} bytes to client from cache")
   except:
     # cache miss.  Get resource from origin server
+    print('Cache miss. Retrieving from origin server...')
     originServerSocket = None
     # Create a socket to connect to origin server
     # and store in originServerSocket
