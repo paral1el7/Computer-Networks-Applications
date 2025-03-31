@@ -102,7 +102,8 @@ while True:
 
   # Check if resource is in cache
   try:
-    cacheLocation = './' + hostname + resource
+    safe_resource = re.sub(r'[<>:"/\\|?*]', '_', resource)
+    cacheLocation = './' + hostname + safe_resource
     if cacheLocation.endswith('/'):
         cacheLocation = cacheLocation + 'default'
 
