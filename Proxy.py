@@ -4,7 +4,7 @@ import sys
 import os
 import argparse
 import re
-
+import time
 
 # 1MB buffer size
 BUFFER_SIZE = 1000000
