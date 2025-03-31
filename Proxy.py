@@ -5,6 +5,7 @@ import os
 import argparse
 import re
 
+
 # 1MB buffer size
 BUFFER_SIZE = 1000000
 
@@ -204,6 +205,19 @@ while True:
       print(f"Writing {len(response)} bytes to cache")
       cacheFile.write(response)
       clientSocket.sendall(response)
+      
+      # Handle Cache-Control: max-age
+      response_str = response.decode(errors='ignore')
+      header_part = response_str.split('\r\n\r\n')[0]
+      cache_control_match = re.search(r'Cache-Control:.*max-age=(\d+)', header_part, re.IGNORECASE)
+      if cache_control_match:
+          max_age = int(cache_control_match.group(1))
+          expire_time = int(time.time()) + max_age
+          with open(cacheLocation + '.time', 'w') as timeFile:
+              timeFile.write(str(expire_time))
+          print(f"Cache will expire in {max_age} seconds (at {expire_time})")
+      else:
+          print("No max-age found in Cache-Control header")
       # ~~~~ END CODE INSERT ~~~~
       cacheFile.close()
       print ('cache file closed')
