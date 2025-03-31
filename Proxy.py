@@ -180,6 +180,11 @@ while True:
           if not chunk:
               break
           response += chunk
+          
+      response_str = response.decode(errors='ignore')
+      status_line = response_str.split('\r\n')[0]
+      if "301" in status_line or "302" in status_line:
+          print(f"Redirect response received: {status_line}")
       # ~~~~ END CODE INSERT ~~~~
 
       # Send the response to the client
